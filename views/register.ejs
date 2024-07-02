@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
+</head>
+<body>
+    <div class="fullpg">
+        <div class="section1">
+            <h1 class="heading">REGISTER</h1>
+            <form action="/login" method="post" class="form">
+                <input type="text" placeholder="Name" name="name" class="input" required>
+                <input type="email" placeholder="Email Address" name="email" class="input" required>
+                <input type="password" placeholder="Password" name="password" class="input" id="pwd" required>
+                <div class="showCheckBox">
+                    <label class="container">
+                        <input type="checkbox" onclick="showPassword()" checked="checked">
+                        <span class="checkmark"></span>
+                    </label>
+                    <div class="thirdRow">
+                        <p class="checkboxText" id="text">Show</p>
+                        <a href="/" class="goBack">Go Back</a>
+                    </div>
+                </div>
+                <button type="submit" class="button">Submit</button>
+                <p class="warningText">Already have an account<br> <a href="/login" class="warningText">Login</a></p>
+            </form>
+            
+        </div>
+    </div>
+
+    <script>
+        function showPassword() {
+            var x = document.getElementById("pwd");
+            var y = document.getElementById("text")
+            if (x.type === "password") {
+                x.type = "text";
+                y.innerHTML = "Hide"
+            } else {
+                x.type = "password";
+                y.innerHTML = "Show"
+            }
+        }
+    </script>
+</body>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Gabarito:wght@800&family=Outfit:wght@500&display=swap');
+    *
+    {
+        margin: 0px;
+        border: 0px;
+    }
+    .fullpg
+    {
+        display: flex;
+        flex-direction: row;
+        width: 100vw;
+        height: 100vh;
+        padding: none;
+        margin: none;
+    }
+
+    .section1
+    {
+        width: 100%;
+        float: left;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: #ffb703;
+        height: 100vh;
+    }
+
+    .section2
+    {
+        background-color: white;
+        width: 50%;
+        float: left;
+    }
+
+    .input
+    {
+        border-radius: 12px;
+        background: #8ecae6;
+        height: 55px;
+        width: 390px;
+        overflow:hidden;
+        border: none;
+        outline: none;
+        font-size: 100%;
+        padding-left: 10px;
+        font-family: 'Outfit', sans-serif;
+    }
+    ::placeholder 
+    {
+        color: #023047;
+    }
+    .heading
+    {
+        align-self: center;
+        font-family: 'Outfit', sans-serif;
+        font-size: 56px;
+        margin-bottom: 50px;
+    }
+    .form
+    {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Gabarito:wght@800&family=Outfit:wght@300;500&display=swap');
+    .button
+    {
+        font-family: 'Outfit', sans-serif;
+        background-color: #023047;
+        border-radius: 12px;
+        width: 180px;
+        height: 40px;
+        border: none;
+        align-self: center;
+        justify-self: center;
+        margin: none;
+        padding: none;
+        cursor: pointer;
+        color: white;
+    }
+    .showCheckBox
+    {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .checkbox
+    {
+        width: 25px;
+        height: 25px;
+    }
+    .checkboxText
+    {
+        font-family: 'Outfit', sans-serif;
+        margin-top: 3px;
+    }
+    .warningText
+    {
+        font-family: 'Outfit', sans-serif;
+        font-size: 16px;
+        text-align: center;
+        text-decoration: none;
+        color: #023047;
+    }
+    .thirdRow
+    {
+        display: flex;
+        flex-direction: row;
+        gap: 240px;
+    }
+    .goBack
+    {
+        width: 75px;
+        font-size: 16px;
+        text-align: center;
+        outline: none;
+        border: none;
+        font-family: 'Outfit', sans-serif;
+        background-color: #fb8500;
+        border-radius: 8px;
+        text-decoration: none;
+        color: #023047;
+    }
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover, 
+    input:-webkit-autofill:focus, 
+    input:-webkit-autofill:active  {
+        color : black !important;
+        -webkit-text-fill-color: black !important;
+        -webkit-box-shadow: 0 0 0 1000px #8ecae6 inset !important;
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
+    }
+    .container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    }
+
+    /* Hide the browser's default radio button */
+    .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+    }
+
+    /* Create a custom radio button */
+    .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+    }
+
+    /* On mouse-over, add a grey background color */
+    .container:hover input ~ .checkmark {
+    background-color: #ccc;
+    }
+
+    /* When the radio button is checked, add a blue background */
+    .container input:checked ~ .checkmark {
+    background-color: #2196F3;
+    }
+
+    /* Create the indicator (the dot/circle - hidden when not checked) */
+    .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    }
+
+    /* Show the indicator (dot/circle) when checked */
+    .container input:checked ~ .checkmark:after {
+    display: block;
+    }
+
+    /* Style the indicator (dot/circle) */
+    .container .checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+    }
+</style>
+</html>
