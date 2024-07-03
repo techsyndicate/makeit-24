@@ -12,7 +12,8 @@ const landingRouter = require('./routes/landingRouter.js'),
     loginRouter = require('./routes/loginRouter.js'),
     regRouter = require('./routes/regRouter.js'),
     passRouter = require('./routes/passRouter.js'),
-    cityRouter = require('./routes/cityRouter.js')
+    cityRouter = require('./routes/cityRouter.js'),
+    helpRouter = require('./routes/helpRouter.js')
 
 const app = express();
 
@@ -49,7 +50,7 @@ app.use('/login', loginRouter)
 app.use('/register', regRouter)
 app.use('/pass', passRouter)
 app.use('/city', cityRouter)
-
+app.use('/help', helpRouter)
 
 
 const PORT = 3000;
