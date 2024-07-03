@@ -5,7 +5,8 @@ const {ensureAuthenticated, ensureNoPass} = require('../utils/auth.js')
 const User = require('../schemas/userSchema.js')
 
 router.get('/', ensureAuthenticated,(req, res) => {
-    res.render('pass')
+    const userdata=req.user
+    res.render('pass',{userdata:userdata})
 });
 
 router.get('/cancel',ensureAuthenticated,(req, res) => {
@@ -16,7 +17,7 @@ router.get('/success',ensureAuthenticated, (req, res) => {
     res.render('success')
 });
 
-router.post('/',ensureAuthenticated, async (req, res, next) => {
+router.post('/',ensureNoPass, async (req, res, next) => {
     const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
         line_items: [{
