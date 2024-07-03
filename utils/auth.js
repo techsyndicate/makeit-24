@@ -16,6 +16,23 @@ function forwardAuthenticated(req, res, next) {
     } 
   }
 
+function ensurePass(req,res,next){
+  if(req.body.pass){
+    return next();
+  }
+  else{
+    res.redirect('/pass')
+  }
+}
+
+function ensureNoPass(req,res,next){
+  if(!req.body.pass){
+    return next();
+  }
+  else{
+    res.redirect('/city')
+  }
+}
 
 async function loginUser(req, res, next) {
     const errors = []
@@ -37,4 +54,4 @@ async function loginUser(req, res, next) {
   }
 
 
-module.exports = { ensureAuthenticated, forwardAuthenticated, loginUser };
+module.exports = { ensureAuthenticated, forwardAuthenticated, loginUser, ensurePass, ensureNoPass };

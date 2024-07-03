@@ -10,6 +10,9 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    pass:{type: Boolean, default: false},
+    passDuration: {type: String, required: false, default: 'none'},
+    passDate: {type:Date, required: false, default: null}
 })
 
 module.exports = mongoose.model("User", userSchema)

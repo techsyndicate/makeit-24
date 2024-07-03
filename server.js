@@ -10,8 +10,9 @@ const mongoose = require('mongoose');
 
 const landingRouter = require('./routes/landingRouter.js'),
     loginRouter = require('./routes/loginRouter.js'),
-    regRouter = require('./routes/regRouter.js')
-
+    regRouter = require('./routes/regRouter.js'),
+    passRouter = require('./routes/passRouter.js'),
+    cityRouter = require('./routes/cityRouter.js')
 
 const app = express();
 
@@ -46,7 +47,8 @@ passportInit(passport)
 app.use('/', landingRouter)
 app.use('/login', loginRouter)
 app.use('/register', regRouter)
-
+app.use('/pass', passRouter)
+app.use('/city', cityRouter)
 
 
 
