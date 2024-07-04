@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <img src="../image.png" class="yekyah" alt=""> -->
+    <%- include('./components/navbar') %>
+    <div class="solutions">
+        <h1 class="solutionsh1">About Neuromend</h1>
+        <p class="solutionsp">Neuromend is a 3 step procedure:</p>
+        <p class="solutionsp">1. Neutralize</p>
+        <p class="solutionsp2">Using chemical cocktail that basically 'neutralises' your brain. It needs to be injected cybernetics</p>
+
+        <img src="/public/cock.png" style="width: 50%; align-self: center; margin-top: 2vw;" alt="">
+
+        <p class="solutionsp">2. Analyze</p>
+        <p class="solutionsp2">Analyzing the situations of the cyberpsycho to diagnose a treatment</p>
+        
+        <img src="/public/bots.gif" style="width: 50%; align-self: center; margin-top: 2vw;" alt="">
+
+        <p class="solutionsp">3. Cure</p>
+        <p class="solutionsp2">Analyzing the situations of the cyberpsycho to diagnose a treatment</p>
+
+        <img src="/public/room.png" style="width: 50%; align-self: center; margin-top: 2vw;" alt="">
+    </div>
+</body>
+<style>
+    body{
+        background-color: #050505;
+    }
+    .solutions{
+        display: flex;
+        flex-direction: column;
+        margin-left: 4vw;
+        margin-top: 3vw;
+    }
+    .solutionsh1{
+        font-size: 5vw;
+        margin: none;
+    }
+    .solutionsp{
+        font-size: 2vw;
+    }
+    .meter{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .yekyah{
+        position: absolute;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        margin-top: 4vw;
+    }
+
+</style>
+</html>
