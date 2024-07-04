@@ -80,6 +80,10 @@
             visibility: hidden;
             margin-left: 0.3vw;
         }
+        .nav-2 {
+            z-index: 21;
+            filter: blur(13.699999809265137px);
+        }
     </style>
 </head>
 <body>
@@ -87,16 +91,30 @@
     <video muted loop>
         <source src="/bg.mp4" type="video/mp4">
     </video>
-    <div class="navbar">
-        <div class="navitems">
-            <div class="navitem" style="padding-left: 1vw; position: relative;">
-                <span style="margin-left: 1.3vw;">LANDMARKS</span>
-                <div class="navbarkachoda"></div>
+    <div class="dual-nav-container">
+        <div class="navbar">
+            <div class="navitems">
+                <div class="navitem" style="padding-left: 1vw; position: relative;">
+                    <span style="margin-left: 1.3vw;">LANDMARKS</span>
+                    <div class="navbarkachoda"></div>
+                </div>
+                <div class="navitem">BUY</div>
+                <div class="navitem">SOLUTION</div>
+                <div class="navitem">CYBERPSYCHOSIS</div>
+                <div class="navitem">LOGIN</div>
             </div>
-            <div class="navitem">BUY</div>
-            <div class="navitem">SOLUTION</div>
-            <div class="navitem">CYBERPSYCHOSIS</div>
-            <div class="navitem">LOGIN</div>
+        </div>
+        <div class="navbar nav-2">
+            <div class="navitems">
+                <div class="navitem" style="padding-left: 1vw; position: relative;">
+                    <span style="margin-left: 1.3vw;">LANDMARKS</span>
+                    <div class="navbarkachoda"></div>
+                </div>
+                <div class="navitem">BUY</div>
+                <div class="navitem">SOLUTION</div>
+                <div class="navitem">CYBERPSYCHOSIS</div>
+                <div class="navitem">LOGIN</div>
+            </div>
         </div>
     </div>
     <script>
