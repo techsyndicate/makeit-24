@@ -14,8 +14,7 @@ const landingRouter = require('./routes/landingRouter.js'),
     passRouter = require('./routes/passRouter.js'),
     cityRouter = require('./routes/cityRouter.js'),
     helpRouter = require('./routes/helpRouter.js'),
-    solutionRouter = require('./routes/solutionRouter.js'),
-    psychoRouter = require('./routes/psychoRouter.js')
+    solutionRouter = require('./routes/solutionRouter.js')
 
 const app = express();
 
@@ -55,7 +54,6 @@ app.use('/pass', passRouter)
 app.use('/city', cityRouter)
 app.use('/help', helpRouter)
 app.use('/solution', solutionRouter)
-app.use('/cyberpsychosis', psychoRouter)
 
 
 const PORT = 3000;

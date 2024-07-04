@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const {ensurePass} = require('../utils/auth.js')
+const {ensurePass, ensureAuthenticated} = require('../utils/auth.js')
 
-router.get('/', (req, res) => {
+router.get('/',ensureAuthenticated, ensurePass, (req, res) => {
     res.render('help')
 });
 

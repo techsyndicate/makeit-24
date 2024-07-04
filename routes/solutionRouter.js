@@ -1,12 +1,8 @@
 const router = require('express').Router();
-const {ensurePass} = require('../utils/auth.js')
+const {ensurePass, ensureAuthenticated} = require('../utils/auth.js')
 
-router.get('/', ensurePass, (req, res) => {
+router.get('/',ensureAuthenticated, ensurePass, (req, res) => {
     res.render('solution')
 });
-
-// router.get('/', (req, res) => {
-//     res.render('solution')
-// });
 
 module.exports = router;
