@@ -11,12 +11,12 @@ router.post("/", async (req, res) => {
     try {
         console.log(req.body);
         const email = req.body.email
-        const name = req.body.name
+        const name = req.body.firsName + ' ' + req.body.lastName
         let errors = []
         const date = new Date();
         var chatDateArr = date.toDateString().split(' ');
         var dateAndTime = chatDateArr[2] + ' ' + chatDateArr[1] + ' ' + chatDateArr[3];
-        if (!req.body.email || !req.body.name || !req.body.password) {
+        if (!req.body.email || !req.body.firstName || !req.body.lastName || !req.body.cnfpassword || !req.body.password) {
             errors.push({msg: "Please fill all the credentials."})
         }
         await User.findOne({ email: email }).then((user) => {
@@ -29,6 +29,9 @@ router.post("/", async (req, res) => {
             errors.push({ msg: "Name already exists, try again." })
             }
         })
+        if (req.body.password != req.body.cnfpassword) {
+            errors.push({msg: "The passwords do not match! Try again."})
+        }
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
         const newUser = new User({
             name: name,
@@ -38,11 +41,11 @@ router.post("/", async (req, res) => {
         });
 
         if (errors.length > 0) {
+            console.log(errors);
             return res.render('register', {errors})
         }
         
         await newUser.save();
-        console.log(newUser);
         res.redirect('/login');
     } catch (error) {
         console.log(error);
