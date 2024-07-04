@@ -17,7 +17,7 @@ function forwardAuthenticated(req, res, next) {
   }
 
 function ensurePass(req,res,next){
-  if(req.body.pass){
+  if(req.user.pass){
     return next();
   }
   else{
@@ -26,7 +26,7 @@ function ensurePass(req,res,next){
 }
 
 function ensureNoPass(req,res,next){
-  if(!req.body.pass){
+  if(!req.user.pass){
     return next();
   }
   else{

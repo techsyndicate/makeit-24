@@ -11,7 +11,7 @@ router.post("/", async (req, res) => {
     try {
         console.log(req.body);
         const email = req.body.email
-        const name = req.body.firsName + ' ' + req.body.lastName
+        const name = req.body.firstName + ' ' + req.body.lastName
         let errors = []
         const date = new Date();
         var chatDateArr = date.toDateString().split(' ');
