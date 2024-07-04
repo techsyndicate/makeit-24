@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navi Mumbai Tour</title>
+    <style>
+        body {
+            margin: 0px;
+            cursor: none;
+        }
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r126/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.126.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script>
+        const scene = new THREE.Scene();
+        const ambientLight = new THREE.AmbientLight(0xffffff);
+        scene.add(ambientLight);
+        const camera = new THREE.PerspectiveCamera(
+            75,
+            window.innerWidth / window.innerHeight,
+            0.1,
+            1000
+        );
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+        camera.position.z = 5;
+        camera.position.x = 0;
+        camera.position.y = -20
+        const cameraRotation = new THREE.Vector3();
+        window.addEventListener('keydown', (e) => {
+            if (e.keyCode == 38) { // up
+                const moveDirection = new THREE.Vector3(0, 0, -1);
+                moveDirection.applyQuaternion(camera.quaternion);
+                moveDirection.normalize();
+                camera.position.add(moveDirection.multiplyScalar(0.15));
+            } else if (e.keyCode == 40) { // down
+                const moveDirection = new THREE.Vector3(0, 0, 1);
+                moveDirection.applyQuaternion(camera.quaternion);
+                moveDirection.normalize();
+                camera.position.add(moveDirection.multiplyScalar(0.15));
+            } else if (e.keyCode == 39) { // right
+                const moveDirection = new THREE.Vector3(1, 0, 0);
+                moveDirection.applyQuaternion(camera.quaternion);
+                moveDirection.normalize();
+                camera.position.add(moveDirection.multiplyScalar(0.15));
+            } else if (e.keyCode == 37) { // left
+                const moveDirection = new THREE.Vector3(-1, 0, 0);
+                moveDirection.applyQuaternion(camera.quaternion);
+                moveDirection.normalize();
+                camera.position.add(moveDirection.multiplyScalar(0.15));
+            }
+        });
+        window.addEventListener('mousemove', (e) => {
+            const movementX = e.movementX || 0;
+            const movementY = e.movementY || 0;
+            cameraRotation.y -= movementX * 0.005;
+            cameraRotation.x -= movementY * 0.005;
+            cameraRotation.x = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, cameraRotation.x));
+            const quaternionX = new THREE.Quaternion();
+            const quaternionY = new THREE.Quaternion();
+            quaternionY.setFromAxisAngle(new THREE.Vector3(0, 1, 0), cameraRotation.y);
+            quaternionX.setFromAxisAngle(new THREE.Vector3(1, 0, 0), cameraRotation.x);
+            camera.quaternion.copy(quaternionY).multiply(quaternionX);
+        });
+        const light = new THREE.DirectionalLight(0xffffff, 1);
+        light.position.set(1, 1, 1).normalize();
+        scene.add(light);
+        const loader = new THREE.GLTFLoader();
+        loader.load(
+            '/mumbai.glb',
+            function (gltf) {
+                const model = gltf.scene;
+                scene.add(model);
+                model.position.set(0, 0, 0);
+            },
+            function (xhr) {
+                console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+            },
+            function (error) {
+                console.error(error);
+            }
+        );
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+        animate();
+        window.addEventListener('resize', () => {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+            renderer.setSize(width, height);
+        });
+    </script>
+</body>
+</html>
