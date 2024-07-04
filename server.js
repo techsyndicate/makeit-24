@@ -27,6 +27,7 @@ app.use(bodyParser.urlencoded({
 const dbUri = process.env.MONGO_URI
 mongoose.connect(process.env.MONGO_URI, console.log('MONGODB CONNECTED'))
 
+app.use('/',express.static(__dirname));
 app.use(express.static('public'))
 app.use('/', express.static('public'))
 app.use(express.static('uploads'))
