@@ -130,7 +130,16 @@
             maxTop = (window.innerHeight * 0.18)
             maxBottom = (window.innerHeight * 0.96)
             if (myVertical > maxTop && myVertical < maxBottom) {
-                document.getElementById('chhotu').style.top = `${myVertical}px`
+                const keyframes = [
+                    {top: `${myVertical}px`}
+                ]
+
+                const timing = {
+                    fill: "both",
+                    duration: 1500
+                }
+
+                document.getElementById('chhotu').animate(keyframes, timing)
             }
             console.log(maxBottom)
         })
