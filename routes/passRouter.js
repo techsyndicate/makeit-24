@@ -12,7 +12,11 @@ router.get('/success',ensureAuthenticated, (req, res) => {
     res.render('success')
 });
 
-router.get('/',ensureAuthenticated, ensureNoPass, async (req, res, next) => {
+router.get('/', ensureAuthenticated, (req,res) => {
+    res.render('pass')
+})
+
+router.get('/buy',ensureAuthenticated, ensureNoPass, async (req, res, next) => {
     const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
         line_items: [{
