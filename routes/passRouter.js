@@ -26,8 +26,8 @@ router.get('/',ensureAuthenticated, ensureNoPass, async (req, res, next) => {
         quantity: 1,
         }],
         mode: 'payment',
-        success_url: 'http://localhost:3000/city',
-        cancel_url: 'http://localhost:3000/pass/cancel',
+        success_url: `${process.env.DOMAIN}city`,
+        cancel_url: `${process.env.DOMAIN}pass/cancel`
       });
       res.redirect(303, session.url);
       await User.findOneAndUpdate({email: req.user.email}, {

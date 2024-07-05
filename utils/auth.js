@@ -30,7 +30,7 @@ function ensureNoPass(req,res,next){
     return next();
   }
   else{
-    res.redirect('/city')
+    res.redirect('/solution')
   }
 }
 
