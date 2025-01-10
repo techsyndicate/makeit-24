@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neuromend</title>
+    <style>
+        body {background-color: #0d0d0d;}
+        .main {
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1vw;
+        }
+        .headingsContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .headingsContainer p:first-child {
+            color: cyan;
+            font-size: 3.7vw;
+            margin: 0px;
+        }
+        .headingsContainer p:last-child {
+            color: white;
+            font-size: 1.2vw;
+            margin-top: 0.3vw;
+        }
+        .mainContainer {
+            width: 75vw;
+            display: flex;
+            justify-content: space-between;
+        }
+        .card {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5vw;
+            width: 20vw;
+        }
+        .card img {
+            width: 20vw;
+            height: 20vw;
+            object-fit: cover;
+        }
+        .card p {
+            margin: 0px;
+            text-align: center;
+            font-size: 1.1vw;
+        }
+    </style>
+</head>
+<body>
+    <!-- <img src="../image.png" class="yekyah" alt=""> -->
+    <%- include('./components/navbar') %>
+    <div class="main">
+        <div class="headingsContainer">
+            <p>ABOUT NEUROMEND</p>
+            <p>NEUROMEND IS A THREE-STEP PROCEDURE:</p>
+        </div>
+        <div class="mainContainer">
+            <div class="card">
+                <img src="/cock.png">
+                <p><span style="color:#00ffff">NEUTRALIZE: </span>Using chemical cocktail that basically 'neutralises' your brain. It needs to be injected cybernetics</p>
+            </div>
+            <div class="card">
+                <img src="/bots.gif">
+                <p><span style="color:#00ffff">ANALYSE: </span>Analyzing the situations of the cyberpsycho to diagnose a treatment</p>
+            </div>
+            <div class="card">
+                <img src="/room.png">
+                <p><span style="color:#00ffff">CURE: </span>Analyzing the situations of the cyberpsycho to diagnose a treatment</p>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="solutions">
+        <h1 class="solutionsh1">About Neuromend</h1>
+        <p class="solutionsp">Neuromend is a 3 step procedure:</p>
+        <p class="solutionsp">1. Neutralize</p>
+        <p class="solutionsp2">Using chemical cocktail that basically 'neutralises' your brain. It needs to be injected cybernetics</p>
+
+        <img src="/public/cock.png" style="width: 50%; align-self: center; margin-top: 2vw;" alt="">
+
+        <p class="solutionsp">2. Analyze</p>
+        <p class="solutionsp2">Analyzing the situations of the cyberpsycho to diagnose a treatment</p>
+        
+        <img src="/public/bots.gif" style="width: 50%; align-self: center; margin-top: 2vw;" alt="">
+
+        <p class="solutionsp">3. Cure</p>
+        <p class="solutionsp2">Analyzing the situations of the cyberpsycho to diagnose a treatment</p>
+
+        <img src="/public/room.png" style="width: 50%; align-self: center; margin-top: 2vw;" alt="">
+    </div>
+</body>
+<style>
+    body{
+        background-color: #050505;
+    }
+    .solutions{
+        display: flex;
+        flex-direction: column;
+        margin-left: 4vw;
+        margin-top: 3vw;
+    }
+    .solutionsh1{
+        font-size: 5vw;
+        margin: none;
+    }
+    .solutionsp{
+        font-size: 2vw;
+    }
+    .meter{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .yekyah{
+        position: absolute;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        margin-top: 4vw;
+    }
+
+</style> -->
+</html>

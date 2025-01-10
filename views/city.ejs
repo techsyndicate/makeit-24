@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navi Mumbai Tour</title>
+    <style>
+        @font-face {
+            font-family: BlenderPro;
+            src: url(.//fonts/BlenderPro/BlenderPro-Medium.ttf);
+        }
+        body {
+            margin: 0px;
+            cursor: none;
+            width: 100%;
+            overflow-x: hidden;
+            overflow: hidden;
+            background-color: #161616;
+            height: 100vh;
+            font-family: BlenderPro;
+        }
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        canvas {
+            display: block;
+        }
+        .loadingContainer {
+            z-index: 21;
+            height: 100vh;
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 2vw;
+        }
+        .loadingImage {
+            z-index: 20;
+            display: block;
+            z-index: 20;
+            width: 100vw;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+        .loadHeadings {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .loadHeadings p {
+            margin: 0px;
+        }
+        .loadh1 {
+            color: #00ffff;
+            font-size: 4vw;
+        }
+        .loadh2 {
+            margin-top: 0.8vw;
+            color: white;
+            font-size: 1.2vw;
+        }
+        .loadingBar {
+            width: 60vw;
+            border: 0.1vw solid #00ffff;
+            height: 4.5vw;
+            display: flex;
+            /* clip-path: polygon(5% 0%, 95% 0%, 95% 100%, 5% 100%); */
+        }
+        .loadingPiece {
+            background-color: #00ffff;
+            width: 4.6vw;
+            height: 4.5vw;
+            clip-path: polygon(30% 0, 100% 0, 70% 100%, 0 100%);
+            display: none;
+        }
+        .loadingPiece:first-child {
+            display: block;
+            width: 4.6vw;
+        }
+    </style>
+</head>
+<body>
+    <div class="loadingContainer" id="loadingContainer">
+        <div class="loadHeadings">
+            <p class="loadh1">LOADING NAVI MUMBAI...</p>
+            <p class="loadh2">PLEASE WAIT WHILE WE LOAD THE CITY</p>
+        </div>
+        <div class="loadingBar">
+            <div class="loadingPiece" id="load1"></div>
+            <div class="loadingPiece" id="load2"></div>
+            <div class="loadingPiece" id="load3"></div>
+            <div class="loadingPiece" id="load4"></div>
+            <div class="loadingPiece" id="load5"></div>
+            <div class="loadingPiece" id="load6"></div>
+            <div class="loadingPiece" id="load7"></div>
+            <div class="loadingPiece" id="load8"></div>
+            <div class="loadingPiece" id="load9"></div>
+            <div class="loadingPiece" id="load10"></div>
+            <div class="loadingPiece" id="load11"></div>
+            <div class="loadingPiece" id="load12"></div>
+            <div class="loadingPiece" id="load13"></div>
+        </div>
+    </div>
+    <img src="/image.png" class="loadingImage">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r126/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.126.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script>
+        const scene = new THREE.Scene();
+        const ambientLight = new THREE.AmbientLight(0xffffff);
+        scene.add(ambientLight);
+        const camera = new THREE.PerspectiveCamera(
+            75,
+            window.innerWidth / window.innerHeight,
+            0.1,
+            1000
+        );
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+        camera.position.z = 5;
+        camera.position.x = 0;
+        camera.position.y = -20
+        const cameraRotation = new THREE.Vector3();
+        window.addEventListener('keydown', (e) => {
+            if (e.keyCode == 87) { // up
+                const moveDirection = new THREE.Vector3(0, 0, -1);
+                moveDirection.applyQuaternion(camera.quaternion);
+                moveDirection.normalize();
+                camera.position.add(moveDirection.multiplyScalar(0.15));
+            } else if (e.keyCode == 83) { // down
+                const moveDirection = new THREE.Vector3(0, 0, 1);
+                moveDirection.applyQuaternion(camera.quaternion);
+                moveDirection.normalize();
+                camera.position.add(moveDirection.multiplyScalar(0.15));
+            } else if (e.keyCode == 68) { // right
+                const moveDirection = new THREE.Vector3(1, 0, 0);
+                moveDirection.applyQuaternion(camera.quaternion);
+                moveDirection.normalize();
+                camera.position.add(moveDirection.multiplyScalar(0.15));
+            } else if (e.keyCode == 65) { // left
+                const moveDirection = new THREE.Vector3(-1, 0, 0);
+                moveDirection.applyQuaternion(camera.quaternion);
+                moveDirection.normalize();
+                camera.position.add(moveDirection.multiplyScalar(0.15));
+            }
+        });
+        window.addEventListener('mousemove', (e) => {
+            const movementX = e.movementX || 0;
+            const movementY = e.movementY || 0;
+            cameraRotation.y -= movementX * 0.005;
+            cameraRotation.x -= movementY * 0.005;
+            cameraRotation.x = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, cameraRotation.x));
+            const quaternionX = new THREE.Quaternion();
+            const quaternionY = new THREE.Quaternion();
+            quaternionY.setFromAxisAngle(new THREE.Vector3(0, 1, 0), cameraRotation.y);
+            quaternionX.setFromAxisAngle(new THREE.Vector3(1, 0, 0), cameraRotation.x);
+            camera.quaternion.copy(quaternionY).multiply(quaternionX);
+        });
+        const light = new THREE.DirectionalLight(0xffffff, 1);
+        light.position.set(1, 1, 1).normalize();
+        scene.add(light);
+        const loader = new THREE.GLTFLoader();
+        loader.load(
+            '/mumbai.glb',
+            function (gltf) {
+                const model = gltf.scene;
+                scene.add(model);
+                model.position.set(0, 0, 0);
+            },
+            function (xhr) {
+                // console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+                if ((xhr.loaded / xhr.total * 100) > 7) {
+                    document.getElementById('load1').style.display = 'block'
+                }
+                if ((xhr.loaded / xhr.total * 100) > 14) {
+                    document.getElementById('load2').style.display = 'block'
+                }
+                if ((xhr.loaded / xhr.total * 100) > 21) {
+                    document.getElementById('load3').style.display = 'block'
+                }
+                if ((xhr.loaded / xhr.total * 100) > 28) {
+                    document.getElementById('load4').style.display = 'block'
+                }
+                if ((xhr.loaded / xhr.total * 100) > 35) {
+                    document.getElementById('load5').style.display = 'block'
+                }
+                if ((xhr.loaded / xhr.total * 100) > 42) {
+                    document.getElementById('load6').style.display = 'block'
+                }
+                if ((xhr.loaded / xhr.total * 100) > 49) {
+                    document.getElementById('load7').style.display = 'block'
+                }
+                if ((xhr.loaded / xhr.total * 100) > 56) {
+                    document.getElementById('load8').style.display = 'block'
+                }
+                if ((xhr.loaded / xhr.total * 100) > 63) {
+                    document.getElementById('load9').style.display = 'block'
+                }
+                if ((xhr.loaded / xhr.total * 100) > 70) {
+                    document.getElementById('load10').style.display = 'block'
+                }
+                if ((xhr.loaded / xhr.total * 100) > 77) {
+                    document.getElementById('load11').style.display = 'block'
+                }
+                if ((xhr.loaded / xhr.total * 100) > 84) {
+                    document.getElementById('load12').style.display = 'block'
+                }
+                if ((xhr.loaded / xhr.total * 100) > 91) {
+                    document.getElementById('load13').style.display = 'block'
+                }
+                if ((xhr.loaded == xhr.total)) {                 
+                    document.getElementById('loadingContainer').style.display = 'none'
+                    document.getElementsByClassName('loadingImage')[0].style.display = 'none'
+                }
+            },
+            function (error) {
+                console.error(error);
+            }
+        );
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+        animate();
+        window.addEventListener('resize', () => {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+            renderer.setSize(width, height);
+        });
+    </script>
+</body>
+</html>
